@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace DinoWebAPI
 {
     public class Dinosaur
@@ -8,5 +10,9 @@ namespace DinoWebAPI
         public string Diet { get; set; } = string.Empty;
         public string Era { get; set; } = string.Empty;
         public int WheightInTons { get; set; } = 8;
+
+        [Column(TypeName = "nvarchar (40)")]
+        public string CurrentContinent { get; set; } = null!;
+        
     }
 }
