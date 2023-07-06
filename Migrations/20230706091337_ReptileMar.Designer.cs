@@ -2,6 +2,7 @@
 using DinoWebAPI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DinoWebAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230706091337_ReptileMar")]
+    partial class ReptileMar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.8");
@@ -53,34 +56,22 @@ namespace DinoWebAPI.Migrations
             modelBuilder.Entity("DinoWebAPI.ReptileMar", b =>
                 {
                     b.Property<int>("Size")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
-                        .HasColumnOrder(0);
-
-                    b.Property<int>("WheightInTons")
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(1);
+                        .HasColumnOrder(4);
 
                     b.Property<string>("Diet")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnOrder(2);
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Id")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Id1")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Id2")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Size", "WheightInTons");
-
-                    b.HasIndex("Id1", "Id2");
+                    b.HasKey("Size");
 
                     b.ToTable("ReptileMars");
                 });
@@ -88,12 +79,9 @@ namespace DinoWebAPI.Migrations
             modelBuilder.Entity("DinoWebAPI.ReptileVol", b =>
                 {
                     b.Property<int>("Size")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnOrder(1);
-
-                    b.Property<int>("WheightInTons")
-                        .HasColumnType("INTEGER")
-                        .HasColumnOrder(2);
 
                     b.Property<int>("Id")
                         .HasColumnType("INTEGER");
@@ -102,25 +90,9 @@ namespace DinoWebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Size", "WheightInTons");
+                    b.HasKey("Size");
 
                     b.ToTable("ReptileVols");
-                });
-
-            modelBuilder.Entity("DinoWebAPI.ReptileMar", b =>
-                {
-                    b.HasOne("DinoWebAPI.ReptileVol", "Parent")
-                        .WithMany("Children")
-                        .HasForeignKey("Id1", "Id2")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Parent");
-                });
-
-            modelBuilder.Entity("DinoWebAPI.ReptileVol", b =>
-                {
-                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }

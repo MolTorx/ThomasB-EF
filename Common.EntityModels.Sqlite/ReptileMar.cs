@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 namespace DinoWebAPI
 {
     [PrimaryKey(nameof(Size), nameof(WheightInTons))]
-    public class ReptileVol
+    public class ReptileMar
     {
+        
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         
@@ -16,8 +17,10 @@ namespace DinoWebAPI
         [Key]
         [Column(Order = 2)]
         public int WheightInTons { get; set; }
+        
 
-        public virtual List<ReptileMar> Children { get; set; } = null!;
+        [ForeignKey("Size, WheightInTons")]
+        public virtual ReptileVol Parent { get; set; } = null!;
         
     }
 }
