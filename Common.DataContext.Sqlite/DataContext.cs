@@ -10,5 +10,6 @@ namespace DinoWebAPI
         }
 
         public DbSet<Dinosaur> Dinosaurs => Set<Dinosaur>();
+        public DbSet<ReptileVol> ReptileVols => Set<ReptileVol>();
     }
 }
